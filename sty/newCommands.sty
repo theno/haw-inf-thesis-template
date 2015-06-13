@@ -1,0 +1,115 @@
+\ProvidesPackage{sty/newCommands}
+
+% Deckblatt (S.1) und Titelblatt (S.2)
+\newcommand{\createCoverAndTitlePage}[8]{
+  \createCover{#1}{#2}{#3}
+  \createTitlePage{#1}{#2}{#3}{#4}{#5}{#6}{#7}{#8}
+}
+
+% \createCover{Art der Arbeit}{Autor}{Titel}
+\newcommand{\createCover}[3]{
+  \thispagestyle{empty}
+  \begin{titlepage}
+    \setlength{\TPHorizModule}{1mm}
+    \setlength{\TPVertModule}{1mm}
+    \textblockorigin{0mm}{0mm} % start everything near the top-left corner
+    
+    % Art der Arbeit
+    \begin{textblock}{111}(83,115)
+      \begin{minipage}[c][1,78cm][c]{11,09cm}		
+        \fontsize{22pt}{20pt}
+        \selectfont
+        \begin{center}
+          #1\vspace{25pt}
+        \end{center}
+      \end{minipage}
+    \end{textblock}
+    
+    % Name & Titel
+    \begin{textblock}{111}(83,131)
+      \begin{minipage}[c][4,81cm][t]{11,09cm}	
+        \linespread{1.2}	
+        \fontsize{16pt}{14pt}    
+        \selectfont
+        \begin{center}
+          #2 \\ \medskip
+          #3
+        \end{center}
+      \end{minipage}
+    \end{textblock}
+
+    % Infos zur Arbeit und zum Fachbereich
+    \begin{textblock}{186}(22,264)
+      \begin{minipage}[t][5,72cm][l]{17,57cm}
+        \fontsize{12pt}{12pt}
+        \selectfont
+        {\em Fakult\"{a}t Technik und Informatik \hfill Faculty of Engineering and Computer Science}\\
+        {\em Department Informatik \hfill Department of Computer Science}
+      \end{minipage}
+    \end{textblock}
+
+    \newpage
+  \end{titlepage}
+
+%  \includepdf{pdf/titel}           				% zum Ausdruck auf blanko Papier
+  \includepdf{pdf/titel_leer}
+}
+
+% \createTitlePage{Art der Arbeit}{Author}{Titel}{Studiengang}{Erstprüfer}{Zweitprüfer}
+\newcommand{\createTitlePage}[7]{
+  \thispagestyle{empty}
+  
+  \setlength{\TPHorizModule}{1mm}
+  \setlength{\TPVertModule}{\TPHorizModule}
+  \textblockorigin{0mm}{0mm} % start everything near the top-left corner
+  
+  % Name & Titel
+  \begin{textblock}{130}(40,63)
+    \begin{minipage}[c][5,9cm][t]{13cm}
+      \begin{center}
+        \linespread{1.2}
+        \fontsize{18pt}{18pt}
+        \selectfont
+        #2 \\ \medskip
+        \fontsize{16pt}{16pt}
+        #3
+      \end{center}
+    \end{minipage}  	
+  \end{textblock}
+  
+  % Infos zur Arbeit und zum Fachbereich
+  \begin{textblock}{126}(32,214)
+    \begin{minipage}[t][5,72cm][l]{12,57cm}
+      \fontsize{12pt}{12pt}
+      \selectfont
+      #1 eingereicht im Rahmen der #1prüfung\\
+      im Studiengang #4\\
+      am Department Informatik\\
+      der Fakult"at Technik und Informatik\\
+      der Hochschule für Angewandte Wissenschaften Hamburg\\
+      \\\
+      \\\
+      Betreuender Prüfer : #5\\
+      Zweitgutachter : #6\\
+      \\\
+      Abgegeben am \today
+    \end{minipage}
+  \end{textblock}
+  \
+}
+
+\newcommand{\asurency}{
+  \chapter*{Versicherung über Selbstständigkeit}
+  \vfill
+  Hiermit versichere ich, dass ich die vorliegende Arbeit im Sinne der Prü\-fungs\-ord\-nung nach \S 24(5) 		ohne fremde Hilfe selbstständig verfasst und nur die angegebenen Hilfsmittel benutzt habe.
+  \vfill
+  \begin{tabularx}{\linewidth}{X l X}
+  Hamburg, \today	& \qquad \qquad \qquad	& \\
+  \cline{1-1}
+  \cline{3-3}
+  Ort, Datum	& \qquad \qquad \qquad	& Unterschrift \\
+  \end{tabularx}
+  \vfill
+  \vfill
+  \vfill
+}

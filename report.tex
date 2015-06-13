@@ -1,0 +1,48 @@
+\documentclass[a4paper,pagesize,oneside,BCOR5mm,headsepline,11pt]{scrartcl}
+\usepackage{sty/mystyle}
+\hypersetup{
+  pdfauthor = {Theodor Nolte},
+  pdftitle = {This is the PDF-Title},
+  pdfsubject = {And that's the Subject},
+  pdfkeywords = {keyword1, keyword2, keyword3}
+  pdfcreator = {LaTeX with hyperref package},
+  pdfproducer = {pdflatex}
+}
+
+\begin{document}
+
+\createCover {
+  This is the Cover Title
+}{
+  \textit{Author Name}
+}{
+  \textit{\today}
+}
+
+\tableofcontents
+%\listoftables
+%\listoffigures
+\vfill
+
+\newpage
+\inputmarkdown{md/markdownfile}
+
+\newpage
+\input{tex/texfile}
+
+\newpage
+\begin{markdown}
+
+# Markdown Environment
+
+This section is written within a Markdown environment in a Latex file.
+
+This is referenced within markdown using latex \cite{s-mtc-48}.
+
+\end{markdown}
+
+\newpage
+\bibliographystyle{plain}
+\bibliography{./bib/myliterature}
+
+\end{document}

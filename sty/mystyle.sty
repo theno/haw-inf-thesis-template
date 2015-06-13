@@ -1,0 +1,117 @@
+\ProvidesPackage{sty/mystyle}
+
+\usepackage{sty/newCommands}
+
+%\usepackage[english,ngerman]{babel} % deutsche Einstellungen
+\usepackage[T1]{fontenc}    % EC-Schriftarten
+\usepackage[utf8]{inputenc} % Dateicodierung
+\usepackage{times}          % Schrift
+%\usepackage{ae}
+\usepackage{array,ragged2e} % Abstandsformatierung
+
+\usepackage{cmbright}
+\usepackage[scaled=.90]{helvet}
+\usepackage{courier}
+
+\usepackage[automark]{scrpage2}  % Anpassung der Kopf- und Fußzeilen
+\usepackage{xspace}              % Korrekter Leerraum nach Befehlsdefinitionen
+\usepackage{setspace}	         % Dieses Package brauchen wir für den anderthalbzeiligen Abstand.
+\usepackage{natbib}              % Neuimplementierung des \cite-Kommandos
+%\usepackage{bibgerm}            % Deutsche Bezeichnungen
+\usepackage[absolute]{textpos}   % placing boxes at absolute positions
+\usepackage[final]{pdfpages}     % include pages of external PDF documents
+\usepackage{tabularx}            % Spaltenbreite bis zur Seitenbreite dehnen
+
+%\usepackage{babelbib}
+
+\usepackage{makeidx}
+%\makeindex
+
+\usepackage[intoc, german, prefix]{nomencl}
+\makenomenclature
+
+\usepackage{subfigure}
+
+\usepackage{graphicx}
+
+\usepackage[labelfont=it]{caption}
+
+\usepackage{color}
+\definecolor{darkgrey}{rgb}{0.95,0.95,0.95}
+\definecolor{lightgrey}{rgb}{0.98,0.98,0.94}
+\definecolor{darkblue}{rgb}{0,0,0.4}
+
+\usepackage{listings}
+
+\lstdefinelanguage{scala}%
+  {morekeywords={abstract,case,catch,class,def,% 
+                 do,else,extends,false,final,finally,%
+                 for,if,implicit,import,match,mixin,%
+                 new,null,object,override,package,% 
+                 private,protected,requires,return,sealed,% 
+                 super,this,trait,true,try,% 
+                 type,val,var,while,with,yield},%
+   otherkeywords={=,=>,<-,<\%,<:,>:,\#,@},%
+   sensitive,%
+   morecomment=[l]//,%
+   morecomment=[n]{/*}{*/},%
+   morestring=[b]",%
+   morestring=[b]',%
+   morestring=[b]""",}
+
+\usepackage[pdftex,
+            colorlinks,
+	    linkcolor=darkblue,
+	    citecolor=darkblue
+	   ]{hyperref}
+
+\pdfcompresslevel=9
+
+% Kopf- und Fusszeilen
+\pagestyle{scrheadings}
+\clearscrheadings
+\clearscrplain
+\clearscrheadfoot
+\ohead{\pagemark}
+\ihead{\headmark}
+
+% Zeilenumbrüche individuell
+%\tolerance 1414
+%\hbadness 1414
+%\emergencystretch 1.5em
+%\hfuzz 0.3pt
+%\widowpenalty=10000
+%\vfuzz \hfuzz
+%\raggedbottom
+
+% Infos zum Package 'glossaries':
+% http://ewus.de/tipp-1029.html
+% http://ctan.mackichan.com/macros/latex/contrib/glossaries/glossariesbegin.pdf
+\usepackage[ngerman]{translator} % "Glossar" statt "glossary" im Inhaltsverzeichnis 
+\usepackage[
+ nonumberlist, % keine Seitenzahlen im Glossar anzeigen
+ toc,          % Glossar im Inhaltsverzeichnis aufführen
+ section]      % und dort auf section-Ebene einordnen
+{glossaries}
+%\makeglossaries
+%\renewcommand*{\glspostdescription}{} %Den Punkt am Ende jeder Beschreibung deaktivieren
+
+% center tables wider than the page width
+% cf. http://stackoverflow.com/questions/722613/latex-centering-a-table-wider-than-the-text-column
+\usepackage{changepage}
+
+\usepackage{mathtools}
+
+% Markdown Environment: http://tex.stackexchange.com/a/101731
+\usepackage{fancyvrb}
+\newenvironment{markdown}%
+    {\VerbatimEnvironment\begin{VerbatimOut}{tmp.markdown}}%
+    {\end{VerbatimOut}%
+        \immediate\write18{pandoc tmp.markdown -t latex -o tmp.tex}%
+        \input{tmp.tex}}
+
+% Process Markdown File: http://tex.stackexchange.com/a/31185
+\newcommand\inputmarkdown[1]
+    {\immediate\write18{pandoc -t latex -o #1.md.tex #1.md}%
+         \input{#1.md.tex}}
+
