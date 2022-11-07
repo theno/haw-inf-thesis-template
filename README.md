@@ -69,7 +69,7 @@ Aufräumen (löscht auch das PDF!):
   * https://launchpad.net/rubber
   * http://vim.wikia.com/wiki/Compiling_LaTeX_from_Vim
 
-* Originalvorlage HAW Hamburg
+* Originalvorlage HAW Hamburg:
   * [Hinweise und Vordrucke für Abschlussarbeiten](https://www.haw-hamburg.de/hochschule/technik-und-informatik/departments/informatik/studium/studienorganisation/)
   * [Download als Zip-File](https://users.informatik.haw-hamburg.de/~aav574/material/)
 
